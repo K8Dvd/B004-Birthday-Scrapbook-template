@@ -1,10 +1,10 @@
+
 import {
   useEffect,
   useRef,
   useState,
   type CSSProperties,
 } from "react";
-
 import {
   ArrowLeft,
   ArrowRight,
@@ -16,7 +16,6 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-
 import { siteData, type TapeColor } from "./data";
 
 type PageId =
@@ -214,15 +213,12 @@ function App() {
         <span className="doodle doodle-star">
           ✦
         </span>
-
         <span className="doodle doodle-heart">
           ♡
         </span>
-
         <span className="doodle doodle-flower">
           ✿
         </span>
-
         <span className="doodle doodle-sparkle">
           ✦
         </span>
@@ -326,6 +322,20 @@ function App() {
         <div
           className="photo-modal"
           onClick={() => setSelectedPhoto(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            width: "100vw",
+            height: "100dvh",
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
+            padding: "20px",
+            margin: 0,
+            overflow: "hidden",
+          }}
         >
           <button
             className="modal-close"
@@ -337,13 +347,37 @@ function App() {
             <X size={22} />
           </button>
 
-          <img
-            src={selectedPhoto}
-            alt="Scrapbook memory"
-            onClick={(event) =>
-              event.stopPropagation()
-            }
-          />
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxSizing: "border-box",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <img
+              src={selectedPhoto}
+              alt="Scrapbook memory"
+              onClick={(event) =>
+                event.stopPropagation()
+              }
+              style={{
+                display: "block",
+                width: "auto",
+                height: "auto",
+                maxWidth: "calc(100vw - 40px)",
+                maxHeight: "calc(100dvh - 40px)",
+                objectFit: "contain",
+                objectPosition: "center center",
+                margin: "0 auto",
+                flex: "0 0 auto",
+              }}
+            />
+          </div>
         </div>
       )}
     </div>
@@ -533,6 +567,7 @@ function HelloPage() {
 
           <div className="yellow-note">
             <Sparkles size={17} />
+
             <span>
               {siteData.hello.note}
             </span>
@@ -546,9 +581,7 @@ function HelloPage() {
 function MemoriesPage({
   onPhotoClick,
 }: {
-  onPhotoClick: (
-    image: string
-  ) => void;
+  onPhotoClick: (image: string) => void;
 }) {
   return (
     <section className="scrap-page inner-page memories-page">
@@ -762,9 +795,7 @@ function VideoPage() {
 function PhotosPage({
   onPhotoClick,
 }: {
-  onPhotoClick: (
-    image: string
-  ) => void;
+  onPhotoClick: (image: string) => void;
 }) {
   return (
     <section className="scrap-page inner-page photos-page">
@@ -999,3 +1030,4 @@ function EndingPage() {
 }
 
 export default App;
+
